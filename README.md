@@ -54,6 +54,24 @@ Once the extension is installed, simply use it in your code by  :
 ```
 Go to route ```['/opcache/default/index']```
 
+
+Also for console command usage - add in console configuration
+
+```php
+'bootstrap'=>[
+       ...
+        \insolita\opcache\Bootstrap::class
+        ...
+],
+...
+'controllerMap'=>[
+    'opcache'=>[
+        'class'=>\insolita\opcache\commands\OpcacheController::class
+    ]
+]
+```
+commands opcache/status opcache/config opcache/files opcache/reset opcache/invalidate will be available
+
 Screens
 -------
 ![Status](http://dl4.joxi.net/drive/2017/04/05/0008/3019/551883/83/a70744c562.jpg)
