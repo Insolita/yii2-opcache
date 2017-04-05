@@ -98,6 +98,16 @@ class OpcacheController extends Controller
     }
     
     /**
+     * List of black-listed files and patterns
+     */
+    public function actionBlack()
+    {
+        $files = $this->finder->getBlackList();
+        foreach ($files as $file) {
+            $this->stdout($file . PHP_EOL);
+        }
+    }
+    /**
      * Reset cache
      * @return int
      */

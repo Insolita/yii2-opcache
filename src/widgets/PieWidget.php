@@ -14,7 +14,7 @@ use yii\web\View;
 /**
  * Class PieWidget
  *
- * @package backend\modules\opcache\widgets
+ * @package insolita\opcache\widgets
  */
 class PieWidget extends Widget
 {
@@ -24,7 +24,7 @@ class PieWidget extends Widget
     public $functionName;
     
     /**
-     * @var string
+     * @var array
      */
     public $clientOptions = [];
     

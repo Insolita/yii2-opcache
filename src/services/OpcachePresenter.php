@@ -13,7 +13,7 @@ use yii\data\ArrayDataProvider;
 /**
  * Class OpcachePresenter
  *
- * @package backend\modules\opcache\services
+ * @package insolita\opcache\services
  */
 class OpcachePresenter implements IOpcachePresenter
 {

@@ -70,7 +70,7 @@ class OpcacheStatus
     /**
      * @return bool
      */
-    public function getOpcacheEnabled(): bool
+    public function getOpcacheEnabled()
     {
         return $this->opcacheEnabled;
     }
@@ -78,7 +78,7 @@ class OpcacheStatus
     /**
      * @return bool
      */
-    public function getCacheFull(): bool
+    public function getCacheFull()
     {
         return $this->cacheFull;
     }
@@ -86,7 +86,7 @@ class OpcacheStatus
     /**
      * @return bool
      */
-    public function getRestartPending(): bool
+    public function getRestartPending()
     {
         return $this->restartPending;
     }
@@ -94,7 +94,7 @@ class OpcacheStatus
     /**
      * @return bool
      */
-    public function getRestartInProgress(): bool
+    public function getRestartInProgress()
     {
         return $this->restartInProgress;
     }
@@ -102,7 +102,7 @@ class OpcacheStatus
     /**
      * @return array
      */
-    public function getMemoryUsage(): array
+    public function getMemoryUsage()
     {
         return $this->memoryUsage;
     }
@@ -110,7 +110,7 @@ class OpcacheStatus
     /**
      * @return array
      */
-    public function getStatistics(): array
+    public function getStatistics()
     {
         return $this->statistics;
     }
@@ -118,7 +118,7 @@ class OpcacheStatus
     /**
      * @return array
      */
-    public function getStringsInfo(): array
+    public function getStringsInfo()
     {
         return $this->stringsInfo;
     }
