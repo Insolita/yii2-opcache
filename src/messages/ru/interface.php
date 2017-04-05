@@ -24,7 +24,7 @@ return [
     'hits'=>'Использований',
     'memory_consumption'=>'Память',
     'last_used_timestamp'=>'Использовалось',
-    'file_timestamp'=>'Закешировано',
+    'file_timestamp'=>'Изменен',
     'memory_usage'=>'Использование памяти',
     'hits_misses'=>'Попаданий/Промахов',
     'common_status' =>'Общий статус',
