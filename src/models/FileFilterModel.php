@@ -107,6 +107,20 @@ class FileFilterModel extends Model implements IFileFilterModel
     }
     
     /**
+     * @param $params
+     *
+     * @return array
+     */
+    public function filterFiles(array $params =[])
+    {
+        if ($this->load($params) && $this->validate() && !empty($this->full_path)) {
+            return array_filter($this->files, [$this, 'pathFilter']);
+        }else{
+            return [];
+        }
+    }
+    
+    /**
      * @param $item
      *
      * @return bool

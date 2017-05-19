@@ -134,7 +134,23 @@ class OpcacheController extends Controller
             return 1;
         }
     }
-    
+    /**
+     * Invalidate pathPart
+     * @param $pathPart
+     *
+     * @return int
+     */
+    public function actionInvalidatePartial($pathPart)
+    {
+        $files = $this->finder->getFiles();
+        foreach ($files as $row) {
+            if(mb_strpos($row['full_path'], $pathPart)!==false){
+                opcache_invalidate($row['full_path'], true);
+                $this->stdout($row['full_path'] . PHP_EOL);
+            }
+        }
+        return 1;
+    }
     /**
      * @param $key
      * @param $value

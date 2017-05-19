@@ -29,6 +29,6 @@ return [
     'hits_misses'=>'Попаданий/Промахов',
     'common_status' =>'Общий статус',
     'interned_strings_usage'=>'Внутреннее использование строк',
-    'opcache_statistics'=>'Статистика OpCache'
-
+    'opcache_statistics'=>'Статистика OpCache',
+    'reset_founded_files' =>'Сбросить найденные файлы'
 ];

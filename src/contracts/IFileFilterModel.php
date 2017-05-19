@@ -20,4 +20,11 @@ interface IFileFilterModel
      * @return ArrayDataProvider
      */
     public function search(array $params =[]);
+    
+    /**
+     * @param array $params
+     *
+     * @return array
+     */
+    public function filterFiles(array $params =[]);
 }

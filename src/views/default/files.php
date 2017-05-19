@@ -71,4 +71,13 @@ $this->title = $version;
             ]
         ); ?>
 	</div>
+    <?php if(!empty($searchModel->full_path) && $provider->getTotalCount()>1):?>
+		<div class="panel-footer">
+            <?=\yii\helpers\Html::beginForm(['invalidate-partial'],'post')?>
+            <?=\yii\helpers\Html::activeHiddenInput($searchModel, 'full_path');?>
+            <?=\yii\helpers\Html::submitButton(Translator::t('reset_founded_files'),
+                                               ['class'=>'btn btn-success'])?>
+            <?=\yii\helpers\Html::endForm()?>
+		</div>
+    <?php endif;?>
 </div>

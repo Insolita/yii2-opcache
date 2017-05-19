@@ -88,7 +88,7 @@ class DefaultController extends Controller
         } else {
             \Yii::$app->session->setFlash('error', Translator::t('cache_reset_fail'));
         }
-        return $this->goBack(\Yii::$app->request->getReferrer());
+        return $this->redirect(\Yii::$app->request->getReferrer());
     }
     
     /**
@@ -120,6 +120,25 @@ class DefaultController extends Controller
                 Translator::t('file_invalidate_fail') . ' - ' . Html::encode($file)
             );
         }
-        return $this->goBack(\Yii::$app->request->getReferrer());
+        return $this->redirect(\Yii::$app->request->getReferrer());
+    }
+    
+    /**
+     * @return \yii\web\Response
+     */
+    public function actionInvalidatePartial()
+    {
+        $files = $this->finder->getFiles();
+        $model = $this->presenter->createFileFilterModel($files);
+        $files = $model->filterFiles(\Yii::$app->request->post(null,[]));
+        if(!empty($files)){
+            foreach ($files as $file){
+                opcache_invalidate($file['full_path'], true);
+            }
+            \Yii::$app->session->setFlash('success', Translator::t('cache_reset_success'));
+        }else{
+            \Yii::$app->session->setFlash('error', Translator::t('cache_reset_fail'));
+        }
+        return $this->redirect(['files']);
     }
 }

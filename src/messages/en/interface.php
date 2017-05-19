@@ -29,5 +29,6 @@ return [
     'hits_misses'=>'Hits/Misses',
     'common_status' =>'Common Status',
     'interned_strings_usage'=>'Interned Strings Usage',
-    'opcache_statistics'=>'OpCache Statistics'
+    'opcache_statistics'=>'OpCache Statistics',
+    'reset_founded_files' =>'Reset founded files'
 ];
