@@ -7,6 +7,7 @@ namespace insolita\opcache\commands;
 
 use insolita\opcache\contracts\IOpcacheFinder;
 use insolita\opcache\contracts\IOpcachePresenter;
+use yii\base\Module;
 use yii\console\Controller;
 
 /**
@@ -38,7 +39,7 @@ class OpcacheController extends Controller
      */
     public function __construct(
         $id,
-        \yii\base\Module $module,
+        Module $module,
         IOpcacheFinder $finder,
         IOpcachePresenter $presenter,
         array $config
@@ -87,6 +88,7 @@ class OpcacheController extends Controller
     
     /**
      * List of cached file; Use with pipe grep for filtering
+     *
      * @example opcache/files | grep yii2
      */
     public function actionFiles()
@@ -107,8 +109,10 @@ class OpcacheController extends Controller
             $this->stdout($file . PHP_EOL);
         }
     }
+    
     /**
      * Reset cache
+     *
      * @return int
      */
     public function actionReset()
@@ -122,6 +126,7 @@ class OpcacheController extends Controller
     
     /**
      * Invalidate file
+     *
      * @param $file
      *
      * @return int
@@ -134,8 +139,10 @@ class OpcacheController extends Controller
             return 1;
         }
     }
+    
     /**
      * Invalidate pathPart
+     *
      * @param $pathPart
      *
      * @return int
@@ -144,13 +151,14 @@ class OpcacheController extends Controller
     {
         $files = $this->finder->getFiles();
         foreach ($files as $row) {
-            if(mb_strpos($row['full_path'], $pathPart)!==false){
+            if (mb_strpos($row['full_path'], $pathPart) !== false) {
                 opcache_invalidate($row['full_path'], true);
                 $this->stdout($row['full_path'] . PHP_EOL);
             }
         }
         return 1;
     }
+    
     /**
      * @param $key
      * @param $value

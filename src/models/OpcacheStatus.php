@@ -17,37 +17,37 @@ class OpcacheStatus
     /**
      * @var bool
      */
-    private $opcacheEnabled=false;
+    private $opcacheEnabled = false;
     
     /**
      * @var bool
      */
-    private $cacheFull=false;
+    private $cacheFull = false;
     
     /**
      * @var bool
      */
-    private $restartPending=false;
+    private $restartPending = false;
     
     /**
      * @var bool
      */
-    private $restartInProgress=false;
+    private $restartInProgress = false;
     
     /**
      * @var array
      */
-    private $memoryUsage=[];
+    private $memoryUsage = [];
     
     /**
      * @var array
      */
-    private $statistics=[];
+    private $statistics = [];
     
     /**
      * @var array
      */
-    private $stringsInfo=[];
+    private $stringsInfo = [];
     
     /**
      * OpcacheStatus constructor.
@@ -57,12 +57,12 @@ class OpcacheStatus
     public function __construct(array $config)
     {
         $this->memoryUsage = Helper::remove($config, 'memory_usage');
-        $this->statistics =  Helper::remove($config, 'opcache_statistics');
+        $this->statistics = Helper::remove($config, 'opcache_statistics');
         $this->stringsInfo = Helper::remove($config, 'interned_strings_usage');
         foreach ($config as $name => $value) {
             $name = Helper::variablize($name);
-            if(isset($this->$name)){
-                $this->$name = $value;
+            if (isset($this->{$name})) {
+                $this->{$name} = $value;
             }
         }
     }
@@ -122,6 +122,5 @@ class OpcacheStatus
     {
         return $this->stringsInfo;
     }
-    
     
 }

@@ -42,17 +42,17 @@ class OpcachePresenter implements IOpcachePresenter
             $data[]
                 = [
                 'option' => $key,
-                'hint'   => $this->translateHint($key),
-                'value'  => $this->formatValue($value, $key),
+                'hint' => $this->translateHint($key),
+                'value' => $this->formatValue($value, $key),
             ];
         }
         return new ArrayDataProvider(
             [
-                'allModels'  => $data,
-                'key'        => 'option',
+                'allModels' => $data,
+                'key' => 'option',
                 'pagination' => ['pageSize' => 100],
-                'sort'       => [
-                    'attributes'   => ['option' => []],
+                'sort' => [
+                    'attributes' => ['option' => []],
                     'defaultOrder' => ['option' => SORT_ASC],
                 ],
             ]
@@ -116,7 +116,7 @@ class OpcachePresenter implements IOpcachePresenter
      *
      * @return string
      */
-    protected function translateHint(string $message): string
+    protected function translateHint($message)
     {
         return Translator::hint($message);
     }

@@ -46,7 +46,7 @@ class FileFilterModel extends Model implements IFileFilterModel
     {
         return [
             [['full_path'], 'trim'],
-            [['full_path'], 'string',  'max' => 100],
+            [['full_path'], 'string', 'max' => 100],
         ];
     }
     
@@ -69,15 +69,15 @@ class FileFilterModel extends Model implements IFileFilterModel
     {
         $provider = new ArrayDataProvider(
             [
-                'allModels'  => $this->files,
-                'key'        => 'full_path',
+                'allModels' => $this->files,
+                'key' => 'full_path',
                 'pagination' => ['pageSize' => 100],
-                'sort'       => [
-                    'attributes'   => [
-                        'full_path'           => [],
-                        'timestamp'           => [],
-                        'hits'                => [],
-                        'memory_consumption'  => [],
+                'sort' => [
+                    'attributes' => [
+                        'full_path' => [],
+                        'timestamp' => [],
+                        'hits' => [],
+                        'memory_consumption' => [],
                         'last_used_timestamp' => [],
                     ],
                     'defaultOrder' => ['full_path' => SORT_ASC],
@@ -87,15 +87,15 @@ class FileFilterModel extends Model implements IFileFilterModel
         if ($this->load($params) && $this->validate() && !empty($this->full_path)) {
             $provider = new ArrayDataProvider(
                 [
-                    'allModels'  => array_filter($this->files, [$this, 'pathFilter']),
-                    'key'        => 'full_path',
+                    'allModels' => array_filter($this->files, [$this, 'pathFilter']),
+                    'key' => 'full_path',
                     'pagination' => ['pageSize' => 100],
-                    'sort'       => [
-                        'attributes'   => [
-                            'full_path'           => [],
-                            'timestamp'           => [],
-                            'hits'                => [],
-                            'memory_consumption'  => [],
+                    'sort' => [
+                        'attributes' => [
+                            'full_path' => [],
+                            'timestamp' => [],
+                            'hits' => [],
+                            'memory_consumption' => [],
                             'last_used_timestamp' => [],
                         ],
                         'defaultOrder' => ['full_path' => SORT_ASC],
@@ -111,11 +111,11 @@ class FileFilterModel extends Model implements IFileFilterModel
      *
      * @return array
      */
-    public function filterFiles(array $params =[])
+    public function filterFiles(array $params = [])
     {
         if ($this->load($params) && $this->validate() && !empty($this->full_path)) {
             return array_filter($this->files, [$this, 'pathFilter']);
-        }else{
+        } else {
             return [];
         }
     }

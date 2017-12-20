@@ -8,6 +8,7 @@ namespace insolita\opcache\controllers;
 use insolita\opcache\contracts\IOpcacheFinder;
 use insolita\opcache\contracts\IOpcachePresenter;
 use insolita\opcache\utils\Translator;
+use yii\base\Module;
 use yii\helpers\Html;
 use yii\web\Controller;
 
@@ -29,10 +30,9 @@ class DefaultController extends Controller
      */
     protected $finder;
     
-    
     public function __construct(
         $id,
-        \yii\base\Module $module,
+        Module $module,
         IOpcacheFinder $finder,
         IOpcachePresenter $presenter,
         array $config = []
@@ -51,7 +51,7 @@ class DefaultController extends Controller
         $version = $this->finder->getVersion();
         $status = $this->finder->getStatus();
         $presenter = $this->presenter;
-        return $this->render('index', compact('version', 'status','presenter'));
+        return $this->render('index', compact('version', 'status', 'presenter'));
     }
     
     /**
@@ -63,7 +63,6 @@ class DefaultController extends Controller
         $directives = $this->finder->getDirectives();
         $directives = $this->presenter->configDirectivesProvider($directives);
         return $this->render('config', compact('version', 'directives'));
-        
     }
     
     /**
@@ -99,7 +98,7 @@ class DefaultController extends Controller
         $blackList = $this->finder->getBlackList();
         $version = $this->finder->getVersion();
         $blackFile = $this->finder->getDirectives()['opcache.blacklist_filename'];
-        return $this->render('blacklist', compact('blackList','blackFile','version'));
+        return $this->render('blacklist', compact('blackList', 'blackFile', 'version'));
     }
     
     /**
@@ -130,13 +129,13 @@ class DefaultController extends Controller
     {
         $files = $this->finder->getFiles();
         $model = $this->presenter->createFileFilterModel($files);
-        $files = $model->filterFiles(\Yii::$app->request->post(null,[]));
-        if(!empty($files)){
-            foreach ($files as $file){
+        $files = $model->filterFiles(\Yii::$app->request->post(null, []));
+        if (!empty($files)) {
+            foreach ($files as $file) {
                 opcache_invalidate($file['full_path'], true);
             }
             \Yii::$app->session->setFlash('success', Translator::t('cache_reset_success'));
-        }else{
+        } else {
             \Yii::$app->session->setFlash('error', Translator::t('cache_reset_fail'));
         }
         return $this->redirect(['files']);
